@@ -5,6 +5,6 @@ public:
         return false;
         while(n%2==0)
         n/=2;
-        return n == true;
+        return n == 1;
     }
 };
