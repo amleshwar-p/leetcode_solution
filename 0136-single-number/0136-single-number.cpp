@@ -1,14 +1,25 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-
         int n = nums.size();
         
-        int ans=0;
-        for(int i=0;i<n;i++){
-            ans^=nums[i];
+
+        for(int i =0;i<n;i++){
+
+            int count =0;
+            int num = nums[i];
+
+            for(int j =0;j<n;j++){
+
+                if(num==nums[j]){
+                    count++;
+                }
+            }
+            if(count ==1){
+                return num;
+            }
         }
-        return ans;
+        return -1;
         
     }
 };
