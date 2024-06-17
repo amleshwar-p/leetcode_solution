@@ -17,9 +17,12 @@ public:
 
             }
         }
-        for(int i =0;i<v1.size();i++){
-            v3.push_back(v1[i]); 
-            v3.push_back(v2[i]); 
+
+        int v1size =0;
+        int v2size =0;
+        for(int i =0;i<v1size<v1.size() && v2size< v2.size();i++){
+            v3.push_back(v1[v1size++]); 
+            v3.push_back(v2[v2size++]); 
         }      
         return v3;
     }
