@@ -16,8 +16,8 @@ public:
         while (count < totalCount) {
 
             // print starting row
-            for (int index = startingCol;count < totalCount && index <= endingCol; index++) {
-                v.push_back(matrix[startingRow][index]);
+            for (int i = startingCol;i <= endingCol; i++) {
+                v.push_back(matrix[startingRow][i]);
                 count++;
             }
             startingRow++;
