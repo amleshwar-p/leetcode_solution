@@ -23,21 +23,21 @@ public:
             startingRow++;
 
             // Print end col
-            for (int index = startingRow; count < totalCount && index <= endingRow; index++) {
-                v.push_back(matrix[index][endingCol]);
+            for (int i = startingRow; i <= endingRow; i++) {
+                v.push_back(matrix[i][endingCol]);
                 count++;
             }
             endingCol--;
 
             // print last row rev
-            for (int index = endingCol;count < totalCount && index >= startingCol; index--) {
-                v.push_back(matrix[endingRow][index]);
+            for (int i = endingCol;count < totalCount && i >= startingCol; i--) {
+                v.push_back(matrix[endingRow][i]);
                 count++;
             }
             endingRow--;
             // print start col rev
-            for (int index = endingRow; count < totalCount && index >= startingRow; index--) {
-                v.push_back(matrix[index][startingCol]);
+            for (int i = endingRow; count < totalCount && i >= startingRow; i--) {
+                v.push_back(matrix[i][startingCol]);
                 count++;
             }
             startingCol++;
