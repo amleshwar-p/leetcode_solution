@@ -1,20 +1,18 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        if (x < 0)
+
+        int numb = 0;
+        int value = x;
+        while (x > 0) {
+            int ans = x % 10;
+            numb = (numb * 10) + ans;
+
+            x = x / 10;
+        }
+        if (numb != value) {
             return false;
-        else if (String.valueOf(x).length() == 1)
-            return true;
-
-        String str = String.valueOf(x);
-
-        int i = 0;
-        int j = str.length() - 1;
-        while (j > i) {
-            if (str.charAt(i) != str.charAt(j))
-                return false;
-            i++;
-            j--;
         }
         return true;
+
     }
 }
