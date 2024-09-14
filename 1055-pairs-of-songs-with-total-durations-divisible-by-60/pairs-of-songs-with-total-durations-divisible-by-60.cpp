@@ -1,16 +1,17 @@
 class Solution {
 public:
     int numPairsDivisibleBy60(vector<int>& time) {
-        int n = time.size();
-        vector<int> count(60, 0);
-        int ans = 0;
-        for (int i : time) {
-            int rem_a = i % 60;           // rem of a will be seen % with 60
-            int comp = (60 - rem_a) % 60; // compliement check of rem a
+        vector<int> value(60, 0);
+        int count = 0;
 
-            ans += count[comp];
-            count[rem_a]++;
+        for (int i : time) {
+            int rem = i % 60;
+            int comp = (60 - rem) %  60;
+
+            count += value[comp];
+
+            value[rem]++;
         }
-        return ans;
+        return count;
     }
 };
