@@ -1,21 +1,24 @@
 class Solution {
 public:
     string largestNumber(vector<int>& nums) {
-        vector<string> result;
-        for (int num : nums) {
-            result.push_back(to_string(num));
-        }
 
+        // to string
+        vector<string> result;
+        for (auto x : nums) {
+            result.push_back(to_string(x));
+        }
+        // custom sort
         sort(result.begin(), result.end(),
              [](string& a, string& b) { return a + b > b + a; });
-        // agar 0 huyi value
-        if (result[0] == "0") {
+        // check 0 value
+        if (result[0] == "0")
             return "0";
-        }
-        string value;
+
+        // store all values in string now
+        string ans;
         for (auto it : result) {
-            value += it;
+            ans += it;
         }
-        return value;
+        return ans;
     }
 };
