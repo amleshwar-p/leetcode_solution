@@ -1,24 +1,24 @@
 class Solution {
 public:
     int trap(vector<int>& height) {
-
-        int n = height.size();
         int totalSum = 0;
-        int left = 0;
-        int right = n-1;
-        int leftMax = height[left];
-        int rightMax = height[right];
+        int n = height.size();
+        vector<int> leftSum(n);
+        vector<int> rightSum(n);
 
-        while (left < right) {
-            if (leftMax < rightMax) {
-                left++;
-                leftMax = max(leftMax, height[left]);
-                totalSum += leftMax - height[left];
-            } else {
-                right--;
-                rightMax = max(rightMax, height[right]);
-                totalSum += rightMax - height[right];
-            }
+        // traverse left
+        leftSum[0] = height[0];
+        for (int i = 1; i < n; i++) {
+            leftSum[i] = max(leftSum[i - 1], height[i]);
+        }
+        // traverse right
+        rightSum[n - 1] = height[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            rightSum[i] = max(rightSum[i + 1], height[i]);
+        }
+
+        for (int i = 0; i < n; i++) {
+            totalSum += min(leftSum[i], rightSum[i]) - height[i];
         }
         return totalSum;
     }
