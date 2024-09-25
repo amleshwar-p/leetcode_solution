@@ -2,15 +2,13 @@ class Solution {
 public:
     int garbageCollection(vector<string>& garbage, vector<int>& travel) {
         int n = garbage.size();
-        int Gindex = 0;
         int Pindex = 0;
         int Mindex = 0;
-        int timeTravel = 0;
+        int Gindex = 0;
 
-        for (int i = 0; i < n; i++) { // check whole garbage
-
-            for (int j = 0; j < garbage[i].size(); j++) {
-                // check specific material in garbage
+        int timeTaken = 0;
+        for (int i = 0; i < n; i++) {                     // check all houses
+            for (int j = 0; j < garbage[i].size(); j++) { // check single house
                 if (garbage[i][j] == 'M') {
                     Mindex = i;
                 } else if (garbage[i][j] == 'P') {
@@ -18,16 +16,16 @@ public:
                 } else {
                     Gindex = i;
                 }
-                timeTravel++;
+                timeTaken++;
             }
         }
         for (int i = 1; i < travel.size(); i++) {
-            travel[i] += travel[i - 1];
+            travel[i] += travel[i - 1]; // add up all travel time defined
         }
-        timeTravel += (Mindex > 0) ? travel[Mindex - 1] : 0;
-        timeTravel += (Pindex > 0) ? travel[Pindex - 1] : 0;
-        timeTravel += (Gindex > 0) ? travel[Gindex - 1] : 0;
+        timeTaken += (Mindex > 0) ? travel[Mindex - 1] : 0;
+        timeTaken += (Gindex > 0) ? travel[Gindex - 1] : 0;
+        timeTaken += (Pindex > 0) ? travel[Pindex - 1] : 0;
 
-        return timeTravel;
+        return timeTaken;
     }
 };
