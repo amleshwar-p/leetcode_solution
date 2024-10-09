@@ -8,10 +8,10 @@ public:
             if (i < word1.size()) {
                 temp += word1[i];
             }
-             if (i < word2.size()) {
+            if (i < word2.size()) {
                 temp += word2[i];
             }
-            i++;           
+            i++;
         }
         return temp;
     }
