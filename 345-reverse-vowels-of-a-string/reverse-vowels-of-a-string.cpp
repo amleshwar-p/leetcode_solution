@@ -6,19 +6,21 @@ public:
     }
     string reverseVowels(string s) {
         int n = s.size();
-
         int l = 0;
         int r = n - 1;
-        while (l <= r) {
 
+        while (l <= r) {
+            // check if  both vowel
             if (isVowel(s[l]) && isVowel(s[r])) {
                 swap(s[l], s[r]);
                 l++;
                 r--;
-            } else if (!isVowel(s[l])) {
-                l++;
-            } else {
+                // check if right not vowel
+            } else if (!isVowel(s[r])) {
                 r--;
+                // check if left is not vowel
+            } else {
+                l++;
             }
         }
         return s;
