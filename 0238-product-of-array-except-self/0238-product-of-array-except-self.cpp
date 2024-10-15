@@ -1,22 +1,20 @@
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        int n = nums.size();
-        vector<int> res(n, 1);
 
-        // left products
-        int leftP = 1;
-        for (int i = 0; i < n; i++) {
-            res[i] = leftP;   // leftp store krdo 1 pe
-            leftP *= nums[i]; // left update
-        }
-        int rightP = 1;
-        for (int i = n - 1; i >= 0; i--) {
+        vector<int> res(nums.size(), 1);
 
-            res[i] *= rightP; // last prod se multiply
-            rightP *= nums[i]; // and right update
+        int leftProduct = 1; // left to right
+        for (int i = 0; i < nums.size(); i++) {
+            res[i] = leftProduct;   // leftp values at res 1
+            leftProduct *= nums[i]; // update leftp
         }
 
+        int rightProduct = 1; // right to left
+        for (int i = nums.size() - 1; i >= 0; i--) {
+            res[i] *= rightProduct;  // multiply by all right values
+            rightProduct *= nums[i]; // update rightp
+        }
         return res;
     }
 };
