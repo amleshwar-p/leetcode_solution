@@ -2,24 +2,27 @@ class Solution {
 public:
     string compressedString(string word) {
         string comp = "";
+        int n = word.size();
         int count = 1;
 
-        for (int i = 1; i < word.size(); i++) {
-            if (word[i] == word[i - 1]) {
-                count++;
-                if (count == 9) {  // Max 9 repetitions
-                    comp += to_string(9) + word[i - 1];
-                    count = 0;  // Reset to 1 for any remaining characters
-                }
+        for (int i = 0; i < word.size()-1; i++) {
+            if (word[i] != word[i + 1]) {
+
+                comp.push_back(count + '0');
+                comp.push_back(word[i]);
+                count = 1;
             } else {
-                comp += to_string(count) + word[i - 1];
-                count = 1;  // Reset for new character sequence
+                count++;
+                if (count == 10) {
+                    comp.push_back(count-1 + '0');
+                    comp.push_back(word[i]);
+                    count = 1;
+                }
             }
         }
-
         // Add the last character sequence
-        comp += to_string(count) + word.back();
-
+        comp.push_back(count + '0');
+        comp.push_back(word[n - 1]);
         return comp;
     }
 };
