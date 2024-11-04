@@ -1,28 +1,27 @@
 class Solution {
 public:
     string compressedString(string word) {
-        string comp = "";
         int n = word.size();
-        int count = 1;
+        string ans = "";
+        int cnt = 1;
 
-        for (int i = 0; i < word.size()-1; i++) {
+        for (int i = 0; i < n - 1; i++) {
             if (word[i] != word[i + 1]) {
-
-                comp.push_back(count + '0');
-                comp.push_back(word[i]);
-                count = 1;
+                ans.push_back(cnt + '0');
+                ans.push_back(word[i]);
+                cnt = 1;
             } else {
-                count++;
-                if (count == 10) {
-                    comp.push_back(count-1 + '0');
-                    comp.push_back(word[i]);
-                    count = 1;
+                cnt++;
+                if (cnt == 10) {
+                    // add till 9 and change
+                    ans.push_back(cnt - 1 + '0');
+                    ans.push_back(word[i]);
+                    cnt = 1;
                 }
             }
         }
-        // Add the last character sequence
-        comp.push_back(count + '0');
-        comp.push_back(word[n - 1]);
-        return comp;
+        ans.push_back(cnt + '0');
+        ans.push_back(word[n - 1]);
+        return ans;
     }
 };
