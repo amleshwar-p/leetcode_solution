@@ -1,47 +1,63 @@
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int m = matrix.size();    // rows
+        int n = matrix[0].size(); // cols
 
-        vector<int> v;
-        int row = matrix.size();
-        int col = matrix[0].size();
-        int count = 0;
-        int totalCount = row * col;
+        int dir = 0;
+        /*
+         dir 0 -> left to right
+         dir 1 -> top to down
+         dir 2 -> right to left
+         dir 3 -> down to top
+        */
 
-        int startingRow = 0;
-        int startingCol = 0;
-        int endingRow = row - 1;
-        int endingCol = col - 1;
+        int top = 0;
+        int down = m - 1;
+        int left = 0;
+        int right = n - 1;
 
-        while (count < totalCount) {
+        vector<int> ans;
 
-            // print starting row
-            for (int i = startingCol;i <= endingCol; i++) {
-                v.push_back(matrix[startingRow][i]);
-                count++;
+        while (ans.size() < (m * n)) {
+
+            if (dir == 0) {
+                // left to right
+                // row fixed
+                for (int i = left; i <= right; i++) {
+                    ans.push_back(matrix[top][i]);
+                }
+                top++;
             }
-            startingRow++;
-
-            // Print end col
-            for (int i = startingRow; i <= endingRow; i++) {
-                v.push_back(matrix[i][endingCol]);
-                count++;
+            if (dir == 1) {
+                // top to down
+                //  col fixed
+                for (int i = top; i <= down; i++) {
+                    ans.push_back(matrix[i][right]);
+                }
+                right--;
             }
-            endingCol--;
-
-            // print last row rev
-            for (int i = endingCol;count < totalCount && i >= startingCol; i--) {
-                v.push_back(matrix[endingRow][i]);
-                count++;
+            if (dir == 2) {
+                // right to left
+                //  row fixed
+                for (int i = right; i >= left; i--) {
+                    ans.push_back(matrix[down][i]);
+                }
+                down--;
             }
-            endingRow--;
-            // print start col rev
-            for (int i = endingRow; count < totalCount && i >= startingRow; i--) {
-                v.push_back(matrix[i][startingCol]);
-                count++;
+            if (dir == 3) {
+                // down to top
+                // col fixed
+                for (int i = down; i >= top; i--) {
+                    ans.push_back(matrix[i][left]);
+                }
+                left++;
             }
-            startingCol++;
+            dir++;
+            if (dir == 4) {
+                dir = 0;
+            }
         }
-        return v;
+        return ans;
     }
 };
