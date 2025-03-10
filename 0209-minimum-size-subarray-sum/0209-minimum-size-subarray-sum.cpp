@@ -3,22 +3,20 @@ public:
     int minSubArrayLen(int target, vector<int>& nums) {
 
         int n = nums.size();
-        int minSum = INT_MAX;
-        int currSum = 0;
+        int window = 0;
+        int ans = INT_MAX;
         int start = 0;
 
         for (int end = 0; end < n; end++) {
-            currSum += nums[end];
-
-            while (currSum >= target) {
-                minSum = min(minSum, end - start + 1);
-                currSum -= nums[start];
+            // at first update you right pointer;
+            window += nums[end];
+            // if condition matched
+            while (window >= target) {
+                ans = min(ans, end - start + 1);
+                window -= nums[start];
                 start++;
             }
         }
-        if (minSum == INT_MAX) {
-            return 0;
-        }
-        return minSum;
+        return ans == INT_MAX ? 0:ans;
     }
 };
